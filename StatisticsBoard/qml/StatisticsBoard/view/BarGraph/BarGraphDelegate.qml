@@ -45,7 +45,7 @@ Item{
                 size: 50
                 sizeVariation: 16
                 endSize: 8
-                acceleration: PointDirection { y: 40; xVariation: 10 }
+                acceleration: PointDirection { y: 80; xVariation: 10 }
             }
         }
     }
