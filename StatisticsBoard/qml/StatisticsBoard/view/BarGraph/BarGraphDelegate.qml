@@ -3,11 +3,10 @@ import QtQuick 2.0
 Item{
     id: container
     width: (ListView.view.width-ListView.view.spacing*(ListView.view.model.count-1))/ListView.view.model.count
-    height: 200
+    height: ListView.view.height
 
     Rectangle {
-
-        height: 100
+        height: datapointsValue/maxValue*(container.height-50)
         width: parent.width
         color: barColor
         radius: 3

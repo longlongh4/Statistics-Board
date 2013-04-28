@@ -28,6 +28,7 @@ Item{
         anchors.top: titleArea.bottom
         anchors.bottom: parent.bottom
         orientation: ListView.Horizontal
+
         spacing: 10
         Rectangle{
             anchors.fill: parent
