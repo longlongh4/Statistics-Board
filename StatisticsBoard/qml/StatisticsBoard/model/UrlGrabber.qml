@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-Item {
+QtObject {
     signal dataReady(string result)
     function grabUrl(url)
     {
@@ -18,10 +18,4 @@ Item {
         req.open("GET",url,true);
         req.send();
     }
-
-    Component.onCompleted: {
-        grabUrl("http://hackatus.herokuapp.com/summary.json")
-    }
-
-
 }
