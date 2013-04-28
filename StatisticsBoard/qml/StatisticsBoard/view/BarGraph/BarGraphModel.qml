@@ -4,10 +4,11 @@ import "../../model"
 Item{
     id: container
     property string title: ""
-    property int refreshEveryNSeconds: 1000
+    property int refreshEveryNSeconds: 5
     property string url: "http://hackatus.herokuapp.com/summary.json"
     property alias listModel: listModel
     property Item listView: null
+    property int maxValue: 0
     UrlGrabber{
         id: urlGrabber
         onDataReady: refreshData(result)
@@ -25,11 +26,13 @@ Item{
         container.title = jsonObject.graph.title;
         var dataArray = jsonObject.graph.datasequences
         var barWidth = (listView.width-(dataArray.length-1)*dataArray.spacing)/dataArray.length
-        var maxValue = getMaxValue(dataArray);
+        maxValue = getMaxValue(dataArray);
+        var dataMap = {};
         for(var i =0;i<dataArray.length;i++)
         {
-            listModel.append({"maxValue":maxValue,"barWidth":barWidth,"barTitle":dataArray[i]["title"],"barColor":dataArray[i]["color"],"datapointsTitle":dataArray[i]["title"],"datapointsValue":dataArray[i]["datapoints"][0]["value"]});
+            dataMap[dataArray[i]["title"]] = dataArray[i];
         }
+        updateItemInModel(dataMap);
     }
 
 
@@ -47,6 +50,27 @@ Item{
                 maxValue = dataArray[i]["datapoints"][0]["value"];
             }
             return maxValue;
+        }
+    }
+
+    function updateItemInModel(dataMap)
+    {
+        for(var i=(listModel.count-1);i>=0;i--)
+        {
+            if(!dataMap[listModel.get(i).datapointsTitle])
+            {
+                listModel.remove(i,1);
+            }
+            else
+            {
+                var data = dataMap[listModel.get(i).datapointsTitle];
+                listModel.set(i,{"maxValue":maxValue,"barTitle":data["title"],"barColor":data["color"],"datapointsTitle":data["title"],"datapointsValue":data["datapoints"][0]["value"]})
+                delete dataMap[listModel.get(i).datapointsTitle];
+            }
+        }
+        for(var key in dataMap)
+        {
+            listModel.append({"maxValue":maxValue,"barTitle":dataMap[key]["title"],"barColor":dataMap[key]["color"],"datapointsTitle":dataMap[key]["title"],"datapointsValue":dataMap[key]["datapoints"][0]["value"]});
         }
     }
 }
