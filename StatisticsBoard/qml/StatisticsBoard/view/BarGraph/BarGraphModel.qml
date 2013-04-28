@@ -7,6 +7,7 @@ Item{
     property int refreshEveryNSeconds: 10
     property string url: "http://hackatus.herokuapp.com/summary.json"
     property alias listModel: listModel
+    property Item listView: null
     UrlGrabber{
         id: urlGrabber
         onDataReady: refreshData(result)
@@ -23,9 +24,10 @@ Item{
         var jsonObject = JSON.parse(data)
         container.title = jsonObject.graph.title;
         var dataArray = jsonObject.graph.datasequences
+        var barWidth = (listView.width-(dataArray.length-1)*dataArray.spacing)/dataArray.length
         for(var i=0;i<dataArray.length;i++)
         {
-            listModel.append({"barTitle":dataArray[i]["title"],"barColor":dataArray[i]["color"],"datapointsTitle":dataArray[i]["datapoints"][0]["title"],"datapointsValue":dataArray[i]["datapoints"][0]["value"]});
+            listModel.append({"barWidth":barWidth,"barTitle":dataArray[i]["title"],"barColor":dataArray[i]["color"],"datapointsTitle":dataArray[i]["title"],"datapointsValue":dataArray[i]["datapoints"][0]["value"]});
         }
     }
     ListModel {
