@@ -27,14 +27,11 @@ Item{
         anchors.right: parent.right
         anchors.top: titleArea.bottom
         anchors.bottom: parent.bottom
+        anchors.leftMargin: 15
+        anchors.rightMargin: 15
         orientation: ListView.Horizontal
 
         spacing: 10
-        Rectangle{
-            anchors.fill: parent
-            color: "black"
-            z:-1
-        }
 
         delegate: BarGraphDelegate{}
         BarGraphModel{

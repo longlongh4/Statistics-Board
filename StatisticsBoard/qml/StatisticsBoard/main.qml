@@ -2,8 +2,9 @@ import QtQuick 2.0
 import "./view/BarGraph"
 
 Rectangle {
-    width: 360
-    height: 360
+    width: 800
+    height: 800
+    color: "black"
     BarGraph{
         anchors.fill: parent
     }
