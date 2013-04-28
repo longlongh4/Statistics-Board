@@ -27,8 +27,8 @@ Item{
 
     SequentialAnimation{id:portraitAnimation1;
         loops: 5
-        NumberAnimation {  target: portrait; property: "anchors.bottomMargin"; from: 0; to:30; duration: 800; easing.type: Easing.InOutQuad }
-        NumberAnimation {  target: portrait; property: "anchors.bottomMargin"; from: 30; to:0; duration: 800; easing.type: Easing.InOutQuad }
+        NumberAnimation {  target: portrait; property: "anchors.bottomMargin"; from: 5; to:35; duration: 800; easing.type: Easing.InOutQuad }
+        NumberAnimation {  target: portrait; property: "anchors.bottomMargin"; from: 35; to:5; duration: 800; easing.type: Easing.InOutQuad }
     }
 
     NumberAnimation { id:portraitAnimation2; target: portrait; property: "rotation"; from: 0; to:1800; duration: 8000; easing.type: Easing.InOutQuad }
@@ -45,6 +45,7 @@ Item{
         width: barItem.width/4*3
         height: width
         anchors.bottom: valueText.top
+        anchors.bottomMargin: 5
         anchors.horizontalCenter: parent.horizontalCenter
     }
 

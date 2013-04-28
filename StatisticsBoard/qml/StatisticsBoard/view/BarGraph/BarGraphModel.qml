@@ -73,7 +73,6 @@ Item{
         for(var key in dataMap)
         {
             listModel.append({"maxValue":maxValue,"barTitle":dataMap[key]["title"],"barColor":dataMap[key]["color"],"datapointsTitle":dataMap[key]["title"],"datapointsValue":dataMap[key]["datapoints"][0]["value"],"portraitUrl":dataMap[key]["datapoints"][0]["portait"]});
-            console.log(listModel.get(0).portraitUrl)
         }
     }
 }
