@@ -64,7 +64,8 @@ Item{
             else
             {
                 var data = dataMap[listModel.get(i).datapointsTitle];
-                listModel.set(i,{"maxValue":maxValue,"barTitle":data["title"],"barColor":data["color"],"datapointsTitle":data["title"],"datapointsValue":data["datapoints"][0]["value"]})
+                listModel.setProperty(i,"maxValue",maxValue);
+                listModel.setProperty(i,"datapointsValue",data["datapoints"][0]["value"])
                 delete dataMap[listModel.get(i).datapointsTitle];
             }
         }

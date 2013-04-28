@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Particles 2.0
 
 Item{
     id: container
@@ -22,7 +23,30 @@ Item{
         radius: 3
         anchors.bottom: caption.top
         Behavior on height {
-             NumberAnimation { duration: 1000 }
+            NumberAnimation { duration: 1000 ; easing.type: Easing.OutBack}
+        }
+
+        // Stars effect
+        ParticleSystem {
+            id: particleSystem
+            anchors.fill: barItem
+            paused: datapointsValue!==maxValue
+            visible: !paused
+            ImageParticle {
+                source: "../../img/star.png"
+                rotationVariation: 180
+                color:barColor==="yellow"?"red":"white"
+            }
+            Emitter {
+                id: particleEmitter
+                anchors.fill: parent
+                emitRate: 16
+                lifeSpan: 2000
+                size: 50
+                sizeVariation: 16
+                endSize: 8
+                acceleration: PointDirection { y: 40; xVariation: 10 }
+            }
         }
     }
 
@@ -33,4 +57,5 @@ Item{
         anchors.horizontalCenter: parent.horizontalCenter
         color: "white"
     }
+
 }
