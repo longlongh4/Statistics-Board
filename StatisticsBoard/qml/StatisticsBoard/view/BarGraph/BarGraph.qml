@@ -23,6 +23,7 @@ Item{
 
     ListView{
         id: listView
+        cacheBuffer: 10000
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: titleArea.bottom

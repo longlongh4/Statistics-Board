@@ -6,6 +6,48 @@ Item{
     width: (ListView.view.width-ListView.view.spacing*(ListView.view.model.count-1))/ListView.view.model.count
     height: ListView.view.height
 
+    property int abc: datapointsValue
+    property int animationCount: 0
+    onAbcChanged: {
+        if(animationCount===0)
+        {
+            animationCount++;
+        }
+        else
+        {
+            playPortraitAnimation();
+        }
+    }
+
+    function playPortraitAnimation(){
+        animationList[Math.floor(Math.random() * 3)].start();
+    }
+
+    property var animationList: [portraitAnimation1,portraitAnimation2,portraitAnimation3]
+
+    SequentialAnimation{id:portraitAnimation1;
+        loops: 5
+        NumberAnimation {  target: portrait; property: "anchors.bottomMargin"; from: 0; to:30; duration: 800; easing.type: Easing.InOutQuad }
+        NumberAnimation {  target: portrait; property: "anchors.bottomMargin"; from: 30; to:0; duration: 800; easing.type: Easing.InOutQuad }
+    }
+
+    NumberAnimation { id:portraitAnimation2; target: portrait; property: "rotation"; from: 0; to:1800; duration: 8000; easing.type: Easing.InOutQuad }
+
+    SequentialAnimation{id:portraitAnimation3;
+        loops: 5
+        NumberAnimation {  target: portrait; property: "scale"; from: 1; to:1.5; duration: 800; easing.type: Easing.InOutQuad }
+        NumberAnimation {  target: portrait; property: "scale"; from: 1.5; to:1; duration: 800; easing.type: Easing.InOutQuad }
+    }
+
+    Image {
+        id: portrait
+        source: portraitUrl
+        width: barItem.width/4*3
+        height: width
+        anchors.bottom: valueText.top
+        anchors.horizontalCenter: parent.horizontalCenter
+    }
+
     Text {
         id: valueText
         text: datapointsValue
@@ -17,7 +59,7 @@ Item{
 
     Rectangle {
         id: barItem
-        height: datapointsValue/maxValue*(container.height-100)
+        height: datapointsValue/maxValue*(container.height-160)
         width: parent.width
         color: barColor
         radius: 3

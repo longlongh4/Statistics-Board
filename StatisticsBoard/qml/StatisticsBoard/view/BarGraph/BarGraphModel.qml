@@ -66,12 +66,14 @@ Item{
                 var data = dataMap[listModel.get(i).datapointsTitle];
                 listModel.setProperty(i,"maxValue",maxValue);
                 listModel.setProperty(i,"datapointsValue",data["datapoints"][0]["value"])
+                listModel.setProperty(i,"portraitUrl",data["datapoints"][0]["portait"])
                 delete dataMap[listModel.get(i).datapointsTitle];
             }
         }
         for(var key in dataMap)
         {
-            listModel.append({"maxValue":maxValue,"barTitle":dataMap[key]["title"],"barColor":dataMap[key]["color"],"datapointsTitle":dataMap[key]["title"],"datapointsValue":dataMap[key]["datapoints"][0]["value"]});
+            listModel.append({"maxValue":maxValue,"barTitle":dataMap[key]["title"],"barColor":dataMap[key]["color"],"datapointsTitle":dataMap[key]["title"],"datapointsValue":dataMap[key]["datapoints"][0]["value"],"portraitUrl":dataMap[key]["datapoints"][0]["portait"]});
+            console.log(listModel.get(0).portraitUrl)
         }
     }
 }
