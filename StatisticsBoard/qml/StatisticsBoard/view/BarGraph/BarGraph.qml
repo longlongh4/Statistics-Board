@@ -8,10 +8,16 @@ Item{
         anchors.left: parent.left
         anchors.right: parent.right
         height: 40
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "#646464" }
+            GradientStop { position: 1.0; color: "black" }
+        }
         Text {
             id: title
             text: dataModel.title
             anchors.centerIn: parent
+            color: "white"
+            font.pointSize: 20
         }
     }
 
@@ -21,16 +27,17 @@ Item{
         anchors.right: parent.right
         anchors.top: titleArea.bottom
         anchors.bottom: parent.bottom
+        orientation: ListView.Horizontal
         Rectangle{
             anchors.fill: parent
-            color: "green"
+            color: "black"
             z:-1
         }
 
         delegate: Rectangle{
             width: 50
             height: 20
-            color: "yellow"
+            color: barColor
         }
         BarGraphModel{
             id: dataModel

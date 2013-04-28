@@ -25,7 +25,7 @@ Item{
         var dataArray = jsonObject.graph.datasequences
         for(var i=0;i<dataArray.length;i++)
         {
-            listModel.append({"title":dataArray[i]["title"],"color":dataArray[i]["color"],"datapointsTitle":dataArray[i]["datapoints"][0]["title"],"datapointsValue":dataArray[i]["datapoints"][0]["value"]});
+            listModel.append({"barTitle":dataArray[i]["title"],"barColor":dataArray[i]["color"],"datapointsTitle":dataArray[i]["datapoints"][0]["title"],"datapointsValue":dataArray[i]["datapoints"][0]["value"]});
         }
     }
     ListModel {
