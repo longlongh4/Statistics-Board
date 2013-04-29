@@ -42,7 +42,7 @@ Item{
     Image {
         id: portrait
         source: portraitUrl
-        width: barItem.width/4*3
+        width: Math.min(barItem.width/4*3,80)
         height: width
         anchors.bottom: valueText.top
         anchors.bottomMargin: 5

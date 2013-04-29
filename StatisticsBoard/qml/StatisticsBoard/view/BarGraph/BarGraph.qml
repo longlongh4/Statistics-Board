@@ -17,7 +17,7 @@ Item{
             text: dataModel.title
             anchors.centerIn: parent
             color: "white"
-            font.pointSize: 20
+            font.pointSize: 24
         }
     }
 
